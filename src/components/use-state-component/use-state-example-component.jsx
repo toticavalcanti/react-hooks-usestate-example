@@ -18,7 +18,7 @@ export class StateClassComponent extends React.Component {
     super();
 
     this.state = {
-      name: 'Toti'
+      name: 'Fulano'
     };
   }
 
@@ -26,8 +26,10 @@ export class StateClassComponent extends React.Component {
     return (
       <Card>
         <h1> {this.state.name} </h1>
-        <button onClick={(e) => this.setState({ name: 'Antonio' })}>
-          Set Name to Antonio
+        <button onClick={(e) => this.setState({ 
+          name: this.state.name === 'Fulano' ? 'Beltrano' : 'Fulano'
+          })}>
+          Mudar
         </button>
       </Card>
     );
