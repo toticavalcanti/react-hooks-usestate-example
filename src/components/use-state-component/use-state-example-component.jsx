@@ -8,7 +8,7 @@ import Card from '../card/card.component';
 //   return (
 //     <Card>
 //       <h1> {name} </h1>
-//       <button onClick={() => setName('Antonio')}>Set Name to Antonio</button>
+//       <button onClick={(e) => setName(name === 'Fulano' ? 'Beltrano' : 'Fulano')}>Mudar</button>
 //     </Card>
 //   );
 // };
