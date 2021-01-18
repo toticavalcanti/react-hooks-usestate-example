@@ -1,39 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import Card from '../card/card.component';
+import Card from '../card/card.component';  
 
-// const UseStateExample = () => {
-//   const [name, setName] = useState('Toti');
+const UseStateExample = () => {
+  const [name, setName] = useState('Fulano');
 
-//   return (
-//     <Card>
-//       <h1> {name} </h1>
-//       <button onClick={() => setName('Antonio')}>Set Name to Antonio</button>
-//     </Card>
-//   );
-// };
+  return (
+    <Card>
+      <h1> {name} </h1>
+      <button onClick={(e) => setName(name === 'Fulano' ? 'Beltrano' : 'Fulano')}>Mudar</button>
+    </Card>
+  );
+};
 
-export class StateClassComponent extends React.Component {
-  constructor() {
-    super();
+// export class StateClassComponent extends React.Component {
+//   constructor() {
+//     super();
 
-    this.state = {
-      name: 'Fulano'
-    };
-  }
+//     this.state = {
+//       name: 'Fulano'
+//     };
+//   }
 
-  render() {
-    return (
-      <Card>
-        <h1> {this.state.name} </h1>
-        <button onClick={(e) => this.setState({ 
-          name: this.state.name === 'Fulano' ? 'Beltrano' : 'Fulano'
-          })}>
-          Mudar
-        </button>
-      </Card>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <Card>
+//         <h1> {this.state.name} </h1>
+//         <button onClick={(e) => this.setState({ 
+//           name: this.state.name === 'Fulano' ? 'Beltrano' : 'Fulano'
+//           })}>
+//           Mudar
+//         </button>
+//       </Card>
+//     );
+//   }
+// }
 
-export default StateClassComponent;
+export default UseStateExample;
