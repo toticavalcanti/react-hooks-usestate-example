@@ -1,39 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Card from '../card/card.component';  
 
-const UseStateExample = () => {
-  const [name, setName] = useState('Fulano');
+const UseEffectExample = () => {
+  const [user, setUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('Bret');
+
+  useEffect(() => {
+    console.log('Oi!')
+    const fetchData = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users?username=${searchQuery}`);
+      const resJson = await response.json();
+      setUser(resJson[0]);
+    }
+    fetchData()
+  }, [searchQuery]);
+  
 
   return (
     <Card>
-      <h1> {name} </h1>
-      <button onClick={(e) => setName(name === 'Fulano' ? 'Beltrano' : 'Fulano')}>Mudar</button>
+      <input 
+        type='search' 
+        value={searchQuery}
+        onChange={event => setSearchQuery(event.target.value)}
+      />
+      {user? (
+        <div>
+          <h3>{user.name}</h3>
+          <h3>{user.username}</h3>
+          <h3>{user.email}</h3>
+        </div>
+
+      ) : (
+        <p>Usuário não encontrado</p>
+      )}
     </Card>
   );
 };
 
-// export class StateClassComponent extends React.Component {
-//   constructor() {
-//     super();
-
-//     this.state = {
-//       name: 'Fulano'
-//     };
-//   }
-
-//   render() {
-//     return (
-//       <Card>
-//         <h1> {this.state.name} </h1>
-//         <button onClick={(e) => this.setState({ 
-//           name: this.state.name === 'Fulano' ? 'Beltrano' : 'Fulano'
-//           })}>
-//           Mudar
-//         </button>
-//       </Card>
-//     );
-//   }
-// }
-
-export default UseStateExample;
+export default UseEffectExample;
