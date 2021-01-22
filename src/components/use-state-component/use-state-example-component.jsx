@@ -18,19 +18,33 @@ export class StateClassComponent extends React.Component {
     super();
 
     this.state = {
-      name: 'Fulano'
+      user: null,
+      searchQuery: 'Bret',
     };
   }
 
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(resp => resp.json())
+      .then(data => this.setState({ user: data}))
+    }
+
   render() {
     return (
-      <Card>
-        <h1> {this.state.name} </h1>
-        <button onClick={(e) => this.setState({ 
-          name: this.state.name === 'Fulano' ? 'Beltrano' : 'Fulano'
-          })}>
-          Mudar
-        </button>
+      <Card> 
+        <input type='search' 
+        value={this.state.searchQuery} 
+        onChange={event => this.state.searchQuery(event.target.value)} 
+      /> 
+      {this.state.user ? ( 
+        <div> 
+          <h3>{this.state.user.name}</h3> 
+          <h3>{this.state.user.username}</h3> 
+          <h3>{this.state.user.email}</h3> 
+          </div> 
+          ) : ( 
+          <p>Usuário não encontrado</p> 
+        )}
       </Card>
     );
   }
