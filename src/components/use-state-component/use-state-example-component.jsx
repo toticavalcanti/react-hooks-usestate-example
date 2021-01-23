@@ -13,11 +13,13 @@ export class StateClassComponent extends React.Component {
   }
 
   componentDidMount(){
+    console.log('O componentDidMount() foi disparado')
     this.fetchData();
   }
 
   componentDidUpdate(previousProps, previousState) {
     if (previousState.searchQuery !== this.state.searchQuery) {
+      console.log('O componentDidUpdatet() foi disparado')
       this.fetchData();
     }
   }
